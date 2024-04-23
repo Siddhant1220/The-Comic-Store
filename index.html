@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Comic Store</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <!--- google font link-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Fontawesome Link for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+
+    <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+
+
+  </head>
+  <body>
+    
+    <header>
+      <nav class="navbar" id="navbar">
+        <div class="logo">
+          <div class="img">
+            <img src="images/the_comic_shop_logo.png" alt="" />
+          </div>
+          <div class="logo-header">
+            <h4><a href="index.html">The Comic Store</a></h4>
+            <small>Welcome To the Fictional World</small>
+          </div>
+        </div>
+        <ul class="nav-list">
+          <div class="logo">
+            <div class="title">
+              <div class="img">
+                <img src="images/the_comic_shop_logo.png" alt="" />
+              </div>
+              <div class="logo-header">
+                <h4><a href="index.html">The Comic Store </a></h4>
+                <small>Welcome To the Fictional World!</small>
+              </div>
+            </div>
+            <button class="close"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="pages/service.html">Service</a></li>
+          <li><a href="pages/contact.html">Contact</a></li>
+          <li><a href="Pages/book-filter.html">Books</a></li>
+          <li><a href="Pages/book-filter.html">Review</a></li>
+          <button class="login"><a href="pages/login.html">Log In</a></button>
+          <button class="signup">
+            <i class="fa-solid fa-user"></i><a href="pages/registration.html">Sign Up</a>
+          </button>
+        </ul>
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="slider">
+        <div class="list">
+            <div class="item">
+                <img src="images/Marvel-comics.jpg" alt="">
+            </div>
+            <div class="item">
+                <img src="images/Mangas.jpg" alt="">
+            </div>
+            <div class="item">
+                <img src="images/DC-comics.jpg" alt="">
+            </div>
+            <div class="item">
+                <img src="images/65642c5403bdb.jpg" alt="">
+            </div>
+            <div class="item">
+                <img src="images/65b2b8c24efb7.jpg" alt="">
+            </div>
+        </div>
+        <div class="buttons">
+            <button id="prev"><</button>
+            <button id="next">></button>
+        </div>
+        <ul class="dots">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <script>
+      let slider = document.querySelector('.slider .list');
+let items = document.querySelectorAll('.slider .list .item');
+let next = document.getElementById('next');
+let prev = document.getElementById('prev');
+let dots = document.querySelectorAll('.slider .dots li');
+
+let lengthItems = items.length - 1;
+let active = 0;
+next.onclick = function(){
+    active = active + 1 <= lengthItems ? active + 1 : 0;
+    reloadSlider();
+}
+prev.onclick = function(){
+    active = active - 1 >= 0 ? active - 1 : lengthItems;
+    reloadSlider();
+}
+let refreshInterval = setInterval(()=> {next.click()}, 3000);
+function reloadSlider(){
+    slider.style.left = -items[active].offsetLeft + 'px';
+    // 
+    let last_active_dot = document.querySelector('.slider .dots li.active');
+    last_active_dot.classList.remove('active');
+    dots[active].classList.add('active');
+
+    clearInterval(refreshInterval);
+    refreshInterval = setInterval(()=> {next.click()}, 3000);
+
+    
+}
+
+dots.forEach((li, key) => {
+    li.addEventListener('click', ()=>{
+         active = key;
+         reloadSlider();
+    })
+})
+window.onresize = function(event) {
+    reloadSlider();
+};
+
+
+    </script>
+    </section>
+
+    <section class="service">
+      <div class="service-container">
+        <div class="service-card">
+          <div class="icon">
+            <i class="fa-solid fa-bolt-lightning"></i>
+          </div>
+          <div class="service-content">
+            <h5>Quick Delivery</h5>
+            <p>
+              We deliver fast with the help of our door to door service
+            </p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="icon">
+            <i class="fa-solid fa-shield"></i>
+          </div>
+          <div class="service-content">
+            <h5>Secure Payment</h5>
+            <p>
+              All of your transactions are safe with us in our database if any problem occurs.
+            </p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="icon">
+            <i class="fa-solid fa-thumbs-up"></i>
+          </div>
+          <div class="service-content">
+            <h5>Best Quality</h5>
+            <p>
+              No compromisation with Quality at all because customer's pleasure is our satisfaction.
+            </p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="icon">
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <div class="service-content">
+            <h5>Return Guarantee</h5>
+            <p>
+              If there is any problem you can return your product.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="suggestion">
+      <div class="container">
+        <div class="recommend">
+          <h4>Recommended For You</h4>
+          <p>
+            This is one of the best comic  book series you will ever read! 
+          </p>
+          <div class="book-container">
+            <div class="book">
+              <figure>
+                <a href="Pages/book-detail.html"
+                  ><img src="images/TCBS6170.jpg" alt=""
+                /></a>
+              </figure>
+            </div>
+            <div class="book">
+              <figure>
+                <a href="Pages/book-detail.html"
+                  ><img src="images/captionAmerica.jpg" alt=""
+                /></a>
+              </figure>
+            </div>
+            <div class="book">
+              <figure>
+                <a href="Pages/book-detail.html"
+                  ><img src="images/superman.jpg" alt=""
+                /></a>
+              </figure>
+            </div>
+            <div class="book">
+              <figure>
+                <a href="Pages/book-detail.html"
+                  ><img src="images/batmen.jpg" alt=""
+                /></a>
+              </figure>
+            </div>
+          </div>
+          <div class="circle-1"></div>
+          <div class="circle-2"></div>
+          <div class="square-dot">
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+          </div>
+        </div>
+        <div class="popular">
+          <h4>Popular in 2024</h4>
+          <p>
+            This is the popular book in 2024
+          </p>
+          <div class="book-container">
+            <div class="book">
+              <figure>
+                <a href="Pages/book-detail.html"
+                  ><img src="images/superman2.jpg" alt=""
+                /></a>
+              </figure>
+            </div>
+            <div class="book">
+              <figure>
+                <a href="Pages/book-detail.html"
+                  ><img src="images/sidways.jpg" alt=""
+                /></a>
+              </figure>
+            </div>
+            <div class="book">
+              <figure>
+                <a href="Pages/book-detail.html"
+                  ><img src="images/titans.png" alt=""
+                /></a>
+              </figure>
+            </div>
+            <div class="book">
+              <figure>
+                <a href="Pages/book-detail.html"
+                  ><img src="images/hulk.jpg" alt=""
+                /></a>
+              </figure>
+            </div>
+          </div>
+          <div class="circle-1"></div>
+          <div class="circle-2"></div>
+          <div class="square-dot">
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+            <i class="fa-solid fa-square"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="offer">
+      <div class="header">
+        <h4>Special Offers</h4>
+        <p>
+          <Strong>GrabOn:</Strong> India’s leading coupons and deals marketplace offers up to <strong> 50% </strong>off on a wide range of Books and services.
+        </p>
+      </div>
+      <div class="offer-container">
+        <div class="offer">
+          <div class="img">
+            <a href="Pages/book-detail.html"
+              ><img src="images\TCBS6170.jpg" alt=""
+            /></a>
+          </div>
+          <div class="offer-content">
+            <h5>Ultimate Spider-Man Vol. 1: Power & Responsibility</h5>
+            <div class="genre">
+              <span>Animated</span>
+              <span>Fun</span>
+              <span>Intresting</span>
+            </div>
+            <p>
+              “With great power comes great responsibility.” In 1963, these prophetic words launched one of the most successful <span id="dots">...</span><span id="more">and recognizable characters of the 20th century… Spider-Man! The powers granted bookish Peter Parker by radioactive spider have fueled the imaginations of fans worldwide for nearly 40 years. With the dawning of a new age, however, comes a hero for a new millennium… Ultimate Spider-Man! Updating Spider-Man for the 21st centiry was no easy task, and it took the brilliant minds of Bill Jemas and Brian Michael Bendis to do just that. With the artistic talents of Mark Bagley and Art Thhibert breathing new life into this legendary mythos, Spider-Man has reasserted himself as one of the.</span>
+            </p>
+            <button onclick="myFunction()" id="myBtn">Read more</button>
+            <script>
+              function myFunction() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less";
+    moreText.style.display = "inline";
+  }
+}
+            </script>
+           <br> <small>Mark Bagley </small>
+            <div class="offer-bottom">
+              <a href="Pages/cart-item.html"><button class="cartbtn">
+                <i class="fa-solid fa-cart-shopping"></i>Add to cart
+              </button></a>
+              <div class="price">
+                <strong><span>$</span>18.7</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="offer">
+          <div class="img">
+            <a href="Pages/book-detail.html"
+              ><img src="images/captionAmerica.jpg" alt=""
+            /></a>
+          </div>
+          <div class="offer-content">
+            <h5>Captain America #23 Comic Book : Shows mindset </h5>
+            <div class="genre">
+              <span>biography</span>
+              <span>Intresting</span>
+              <span>Hero</span>
+            </div>
+            <p>
+              The Civil War continues to rage through Cap's life, tearing apart every life it touches! In Part 2 of the 3-part 'DRUMS OF WAR' arc, we <span id="span1">...</span> 
+              <span class="mybox1" id="mybox1id"> find outhow the Red Skull is taking advantage of the split in the hero community to lay plans for his greatest revenge, and the Winter Soldier comes face to face with Cap once again, but which side will he choose? By Top Ten Writer Ed Brubaker and Mike Perkins.</span>
+            </p>
+            <button id="mybuttonid" 
+            onclick="changeReadMore()"> 
+        Read More 
+    </button> 
+            <script>
+              // script.js 
+function changeReadMore() { 
+	const mycontent = 
+		document.getElementById('mybox1id'); 
+	const mybutton = 
+		document.getElementById('mybuttonid'); 
+	const span1 = document.getElementById("span1") 
+
+	if (mycontent.style.display === 'none'
+		|| mycontent.style.display === '') { 
+		mycontent.style.display = 'inline'; 
+		span1.style.display = "none"; 
+		mybutton.textContent = 'Read Less'; 
+	} else { 
+		mycontent.style.display = 'none'; 
+		mybutton.textContent = 'Read More'; 
+		span1.style.display = "inline"; 
+	} 
+} 
+
+         </script>
+            
+          <br>  <small>Ta-Nehisi Coates</small>
+            <div class="offer-bottom">
+              <button class="cartbtn">
+                <a href="Pages/cart-item.html"> <i class="fa-solid fa-cart-shopping"></i>Add to cart
+              </button></a>
+              <div class="price">
+                <strong><span>$</span>15.6</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="offer">
+          <div class="img">
+            <a href="pages/book-detail.html"
+              ><img src="images/attackon.jpg" alt=""
+            /></a>
+          </div>
+          <div class="offer-content">
+            <h5>Attack On Titan Final :
+              Season Poster</h5>
+            <div class="genre">
+              <span>biography</span>
+              <span>thriller</span>
+              <span>horror</span>
+            </div>
+            <p>
+              Attack on Titan is a Japanese dark fantasy and post-apocalyptic anime series based on Hajime Isayama's manga. The story is set in a world where humanity lives<span id="span2">...</span> 
+              <span class="mybox2" id="mybox2id"> inside cities surrounded by enormous walls to protect them from Titans, gigantic humanoid beings who devour humans without reason. The protagonist, Eren Yeager, vows to exterminate the Titans after they destroy his hometown and kill his mother
+            </p>
+            <button id="mybutton2id" 
+            onclick="changeReadMore()"> 
+        Read More 
+    </button> 
+    <script>
+      // script.js 
+function changeReadMore() { 
+const mycontent2 = 
+document.getElementById('mybox2id'); 
+const mybutton2 = 
+document.getElementById('mybutton2id'); 
+const span2 = document.getElementById("span2") 
+
+if (mycontent2.style.display === 'none'
+|| mycontent2.style.display === '') { 
+mycontent2.style.display = 'inline'; 
+span2.style.display = "none"; 
+mybutton2.textContent = 'Read Less'; 
+} else { 
+mycontent2.style.display = 'none'; 
+mybutton2.textContent = 'Read More'; 
+span2.style.display = "inline"; 
+} 
+} 
+
+ </script>
+    
+           <br> <small>Hajime Isayama </small>
+            <div class="offer-bottom">
+              <button class="cartbtn">
+                <a href="Pages/cart-item.html"> <i class="fa-solid fa-cart-shopping"></i>Add to cart
+              </button> </a>
+              <div class="price">
+                <strong><span>$</span>10.2</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sale">
+      <div class="header">
+        <h4>Flash Sale</h4>
+        <p>
+          This website offers a vast collection of comics from various genres, including <strong> DC, Marvel, Mangas, and more</strong> <br> Whether you’re into superhero tales, mysteries, or slice-of-life stories, you’ll find something captivating here
+        </p>
+      </div>
+      <div class="timer">
+        <div class="hours">
+          <span id="hour"></span>
+          <small>Hours</small>
+        </div>
+        <div class="minutes">
+          <span id="minute"></span>
+          <small for="minute">Minutes</small>
+        </div>
+        <div class="seconds">
+          <span id="second"></span>
+          <small for="second">Seconds</small>
+        </div>
+      </div>
+      <div class="book-container">
+        <div class="book">
+          <div class="img">
+            <a href="Pages/book-detail.html"
+              ><img src="images/spyx.jpg" alt="" />
+            </a>
+          </div>
+          <h5>Spy X Family, Vol. 10 : Mangas</h5>
+          <small>Thriller</small>
+          <div class="price">
+            <span>$54.6</span>
+            <span><strike>$70.00</strike></span>
+          </div>
+        </div>
+        <div class="book">
+          <div class="img">
+            <a href="Pages/book-detail.html"
+              ><img src="images/pokemon.jpg" alt=""
+            /></a>
+          </div>
+          <h5>Pokémon Adventures: Vol. 1</h5>
+          <small>Thriller</small>
+          <div class="price">
+            <span>$44.2</span>
+            <span><strike>$60.00</strike></span>
+          </div>
+        </div>
+        <div class="book">
+          <div class="img">
+            <a href="Pages/book-detail.html"
+              ><img src="images/betwist.jpg" alt=""
+            /></a>
+          </div>
+          <h5>Betwixt: A Horror Manga Antholog</h5>
+          <small>Thriller</small>
+          <div class="price">
+            <span>$34.6</span>
+            <span><strike>$50.00</strike></span>
+          </div>
+        </div>
+        <div class="book">
+          <div class="img">
+            <a href="Pages/book-detail.html"
+              ><img src="images/chainsaw.jpg" alt=""
+            /></a>
+          </div>
+          <h5>Chainsaw Man Vol. 12</h5>
+          <small>Intresting</small>
+          <div class="price">
+            <span>$58.6</span>
+            <span><strike>$75.00</strike></span>
+          </div>
+        </div>
+        <div class="book">
+          <div class="img">
+            <a href="Pages/book-detail.html"
+              ><img src="images/chainsaw2.jpg" alt="" />
+            </a>
+          </div>
+          <h5>Chainsaw Man, Vol. 1</h5>
+          <small>Thriller</small>
+          <div class="price">
+            <span>$52.6</span>
+            <span><strike>$70.00</strike></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="book-sale">
+      <div class="heading">
+        <h4>Books On Sale</h4>
+        <div class="arrowbtn">
+          <i id="left" class="fa-solid fa-angle-left"></i>
+          <i id="right" class="fa-solid fa-angle-right"></i>
+        </div>
+      </div>
+      <div class="book-container">
+        <div class="wrapper">
+          <ul class="carousel">
+            <li class="card">
+              <div class="img">
+                <a href="Pages/book-detail.html"><img src="images/attackon.jpg" alt="" /></a>
+                <span class="badge">50%</span>
+              </div>
+              <h5>Attack On Titan</h5>
+              <div class="genre">
+                <span>adventure,</span><span>survival</span>
+              </div>
+              <div class="footer">
+                <span class="star"><i class="fa fa-star"></i> 4.7</span>
+                <div class="price">
+                  <span>$45.4</span>
+                  <span><strike>$90.4</strike></span>
+                </div>
+              </div>
+            </li>
+            <li class="card">
+              <div class="img">
+                <a href="Pages/book-detail.html"><img src="images/hulk.jpg" alt="" /></a>
+                <span class="badge">50%</span>
+              </div>
+              <h5>HULK Vol: 1</h5>
+              <div class="genre">
+                <span>Sci-Fi,</span><span>survival</span>
+              </div>
+              <div class="footer">
+                <span class="star"><i class="fa fa-star"></i> 4.7</span>
+                <div class="price">
+                  <span>$45.4</span>
+                  <span><strike>$90.4</strike></span>
+                </div>
+              </div>
+            </li>
+            <li class="card">
+              <div class="img">
+                <a href="Pages/book-detail.html"><img src="images/drgon ball z.jpg" alt="" /></a>
+                <span class="badge">50%</span>
+              </div>
+              <h5>Dragonball z</h5>
+              <div class="genre">
+                <span>adventure,</span><span>Anime</span>
+              </div>
+              <div class="footer">
+                <span class="star"><i class="fa fa-star"></i> 4.7</span>
+                <div class="price">
+                  <span>$45.4</span>
+                  <span><strike>$90.4</strike></span>
+                </div>
+              </div>
+            </li>
+            <li class="card">
+              <div class="img">
+                <a href="Pages/book-detail.html"><img src="images/demon slayer.jpg" alt="" /></a>
+                <span class="badge">50%</span>
+              </div>
+              <h5>Demon slayer</h5>
+              <div class="genre">
+                <span>anime,</span><span>survival</span>
+              </div>
+              <div class="footer">
+                <span class="star"><i class="fa fa-star"></i> 4.7</span>
+                <div class="price">
+                  <span>$45.4</span>
+                  <span><strike>$90.4</strike></span>
+                </div>
+              </div>
+            </li>
+            <li class="card">
+              <div class="img">
+                <a href="Pages/book-detail.html"><img src="images/naruto.png" alt="" /></a>
+                <span class="badge">40%</span>
+              </div>
+              <h5>Naruto...</h5>
+              <div class="genre">
+                <span><a href=""></a>nime,</span><span>survival</span>
+              </div>
+              <div class="footer">
+                <span class="star"><i class="fa fa-star"></i> 4.7</span>
+                <div class="price">
+                  <span>$45.4</span>
+                  <span><strike>$80.4</strike></span>
+                </div>
+              </div>
+            </li>
+            <li class="card">
+              <div class="img">
+                <a href="Pages/book-detail.html"><img src="images/itachi.jpeg" alt="" /></a>
+                <span class="badge">55%</span>
+              </div>
+              <h5>Itachi</h5>
+              <div class="genre">
+                <span>anime,</span><span>survival</span>
+              </div>
+              <div class="footer">
+                <span class="star"><i class="fa fa-star"></i> 4.7</span>
+                <div class="price">
+                  <span>$45.4</span>
+                  <span><strike>$90.4</strike></span>
+                </div>
+              </div>
+            </li>
+            <li class="card">
+              <div class="img">
+                <a href="Pages/book-detail.html"><img src="images/captionAmerica.jpg" alt="" /></a>
+                <span class="badge">50%</span>
+              </div>
+              <h5>Caption America</h5>
+              <div class="genre">
+                <span>adventure,</span><span>survival</span>
+              </div>
+              <div class="footer">
+                <span class="star"><i class="fa fa-star"></i> 4.7</span>
+                <div class="price">
+                  <span>$40.4</span>
+                  <span><strike>$80.4</strike></span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature">
+      <div class="main">
+        <div class="content">
+          <h4>Featured Books</h4>
+          <p>In a world where magic is forbidden,<br> one young sorceress holds the key to unraveling ancient secrets.
+          </p>
+          <div class="featured-book-card">
+            <div class="img">
+              <a href="pages/book-detail.html"><img src="images/drgon ball z.jpg" alt="" /></a>
+            </div>
+            <div class="card-description">
+              <div class="card-header">
+                <div class="icon">
+                  <i class="fa-regular fa-bookmark"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <div class="title">
+                  <h5>Dragonball Z</h5>
+                  <small>Anime, adventure</small>
+                </div>
+              </div>
+              <div class="card-body">
+                <h6>Synopsis</h6>
+                <p>
+                  Dragon Ball Z follows the adventures of the adult Goku who, along with his companions, defends the earth against an assortment of villains ranging from intergalactic space fighters and conquerors, unnaturally powerful androids and near indestructible magical creatures
+                </p>
+                <div class="author-year">
+                  <div class="author">
+                    <small>Written by</small>
+                    <strong>Akira Toriyama</strong>
+                  </div>
+                  <div class="year">
+                    <small>Year</small>
+                    <strong>1989</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="price">
+                  <span>$81.78</span>
+                  <strike>$90.00</strike>
+                </div>
+                <div class="cartbtn">
+                  <a href="Pages/cart-item.html"><button><i class="fa-solid fa-cart-shopping"></i>Add</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="book-section">
+          <div class="container">
+            <div class="img">
+              <a href="pages/book-detail.html"><img src="images/batmen.jpg" alt="" /></a>
+            </div>
+            <div class="img">
+              <a href="pages/book-detail.html"><img src="images/superman2.jpg" alt="" /></a>
+            </div>
+            <div class="img">
+              <a href="pages/book-detail.html"><img src="images/naruto.png" alt="" /></a>
+            </div>
+            <div class="img">
+              <a href="pages/book-detail.html"><img src="images/chainsaw.jpg" alt="" /></a>
+            </div>
+            <div class="img">
+              <a href="pages/book-detail.html"><img src="images/TCBS6170.jpg" alt="" /></a>
+            </div>
+            <div class="img">
+              <a href="pages/book-detail.html"><img src="images/titans.png" alt="" /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="circle-1"></div>
+      <div class="circle-2"></div>
+    </section>
+
+    <!-- <section class="news">
+      <div class="heading">
+        <div class="title">
+          <h4>Latest News</h4>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. <br />
+            Quia, laborum ad perspiciatis ab, sequi.
+          </p>
+        </div>
+        <div class="btn">
+          <button>View More <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+      <div class="news-container">
+        <div class="post">
+          <div class="img">
+            <img src="images/news-1.avif" alt="" />
+          </div>
+          <h5>Why reading is important for our children?</h5>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Aspernatur, quo temporibus! Tenetur...
+            <a href="">Continue reading</a>
+          </p>
+          <div class="post-footer">
+            <div class="img">
+              <img src="images/man1.png" alt="" />
+            </div>
+            <div class="details">
+              <strong>James Bond</strong>
+              <small>5 August 2020</small>
+            </div>
+          </div>
+        </div>
+        <div class="post">
+          <div class="img">
+            <img src="images/news-2.webp" alt="" />
+          </div>
+          <h5>Why reading is important for our children?</h5>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Aspernatur, quo temporibus! Tenetur...
+            <a href="">Continue reading</a>
+          </p>
+          <div class="post-footer">
+            <div class="img">
+              <img src="images/man1.png" alt="" />
+            </div>
+            <div class="details">
+              <strong>James Bond</strong>
+              <small>5 August 2020</small>
+            </div>
+          </div>
+        </div>
+        <div class="post">
+          <div class="img">
+            <img src="images/news-3.jpg" alt="" />
+          </div>
+          <h5>Why reading is important for our children?</h5>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Aspernatur, quo temporibus! Tenetur...
+            <a href="">Continue reading</a>
+          </p>
+          <div class="post-footer">
+            <div class="img">
+              <img src="images/man1.png" alt="" />
+            </div>
+            <div class="details">
+              <strong>James Bond</strong>
+              <small>5 August 2020</small>
+            </div>
+          </div>
+        </div>
+        <div class="post">
+          <div class="img">
+            <img src="images/news-4.jpg" alt="" />
+          </div>
+          <h5>Why reading is important for our children?</h5>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Aspernatur, quo temporibus! Tenetur...
+            <a href="">Continue reading</a>
+          </p>
+          <div class="post-footer">
+            <div class="img">
+              <img src="images/man1.png" alt="" />
+            </div>
+            <div class="details">
+              <strong>James Bond</strong>
+              <small>5 August 2020</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <section class="countdown">
+      <div class="container">
+        <div class="customer counter">
+          <div class="icon">
+            <i class="fa-solid fa-user-group"></i>
+          </div>
+          <div class="content">
+            <h4 class="count">125,663</h4>
+            <small>Happy Customers</small>
+          </div>
+        </div>
+        <div class="book counter">
+          <div class="icon">
+            <i class="fa-solid fa-book"></i>
+          </div>
+          <div class="content">
+            <h4 class="count">50,672</h4>
+            <small>Book Collections</small>
+          </div>
+        </div>
+        <div class="store counter">
+          <div class="icon">
+            <i class="fa-solid fa-store"></i>
+          </div>
+          <div class="content">
+            <h4 class="count">1,562</h4>
+            <small>Our Stores</small>
+          </div>
+        </div>
+        <div class="writer counter">
+          <div class="icon">
+            <i class="fa-solid fa-feather"></i>
+          </div>
+          <div class="content">
+            <h4 class="count">457</h4>
+            <small>Famous Writer</small>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="subscription">
+      <div class="container">
+        <h4>
+          Subscribe our newsletter for Latest <br />
+          books updates
+        </h4>
+        <div class="input">
+          <input type="text" placeholder="Type your email here" />
+          <button>subscribe</button>
+        </div>
+      </div>
+      <div class="circle-1"></div>
+      <div class="circle-2"></div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="logo-description">
+          <div class="logo">
+            <div class="img">
+              <img src="images/the_comic_shop_logo.png" alt="" />
+            </div>
+            <div class="title">
+              <h4>The Comic Store</h4>
+              <small>Welcome to the Fictional Store</small>
+            </div>
+          </div>
+          <div class="logo-body">
+            <p>
+              If you’re looking for the best websites to read comics, this resource has you covered. Dive into classic superhero tales, indie graphic novels, and more
+            </p>
+          </div>
+          <div class="social-links">
+            <h4>Follow Us</h4>
+            <ul class="links">
+              <li>
+                <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="fa-brands fa-youtube"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="fa-brands fa-twitter"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="fa-brands fa-linkedin"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="fa-brands fa-instagram"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="categories list">
+          <h4>Book Categories</h4>
+          <ul>
+            <li><a href="Pages/book-filter.html">Action</a></li>
+            <li><a href="Pages/book-filter.html">Adventure</a></li>
+            <li><a href="Pages/book-filter.html">Comedy</a></li>
+            <li><a href="Pages/book-filter.html">Crime</a></li>
+            <li><a href="Pages/book-filter.html">Drama</a></li>
+            <li><a href="Pages/book-filter.html">Fantasy</a></li>
+            <li><a href="Pages/book-filter.html">Horror</a></li>
+          </ul>
+        </div>
+        <div class="quick-links list">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">About Us</a></li>
+            <li><a href="pages/contact.html">Contact Us</a></li>
+            <li><a href="pages/book-filter.html">Products</a></li>
+            <li><a href="pages/login.html">Login</a></li>
+            <li><a href="pages/registration.html">Sign Up</a></li>
+            <li><a href="pages/cart-item.html">Cart</a></li>
+            <li><a href="pages/checkout.html">Checkout</a></li>
+          </ul>
+        </div>
+        <div class="our-store list">
+          <h4>Our Store</h4>
+          <div class="map" style="margin-top: 1rem">
+            <iframe
+              src="https://www.google.com/maps/d/embed?mid=1fOWrMPRrasEddZTtDvLXWmse3Fw&ehbc=2E312F"
+              height="200"
+              style="width: 100%; border: none; border-radius: 5px"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+          <ul>
+            <li>
+              <a href=""
+                ><i class="fa-solid fa-location-dot"></i>Lovely Professtional University, Jalandhar, Punjab</a
+              >
+            </li>
+            <li>
+              <a href=""><i class="fa-solid fa-phone"></i>+91 7073252219</a>
+            </li>
+            <li>
+              <a href=""
+                ><i class="fa-solid fa-envelope"></i>proshivraj14@gmail.com</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <button class="back-to-top"><i class="fa-solid fa-chevron-up"></i></button>
+    <script src="js/back-to-top.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/repeat-js.js"></script>
+    <script src="js/add-to-cart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+  </body>
+</html>

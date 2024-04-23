@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"name": "nodejs",
+			"path": "../nodejs"
+		},
+		{
+			"name": "html",
+			"path": "../html"
+		},
+		{
+			"name": "java",
+			"path": "../java"
+		},
+		{
+			"name": "java-self",
+			"path": "../java-self"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "html"
+	}
+}
